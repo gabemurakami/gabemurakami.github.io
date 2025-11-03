@@ -1,0 +1,28 @@
+:root {
+    /* Text colors */
+
+    --text-light: white;
+    --text-dark: black;
+
+    --text-light-inverse: black!important;
+    --text-dark-inverse: white!important;
+
+    /* Background colors */
+
+    --background-light: #f5f5fb !important;
+    --background-dark: #191919!important;
+
+    /* Primary colors (text or background) */
+
+    --blue-light: #1a73e8!important;
+    --blue-dark: #8ab4f8!important;
+
+    --red-light: #e84545!important;
+    --red-dark: #d32f2f!important;
+
+    --purple-light: #9b59b6 !important;
+    --purple-dark: #6a0dad !important;
+
+    --green-light: #2ea043!important;
+    --green-dark: #216e39!important;
+}

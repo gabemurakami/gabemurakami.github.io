@@ -1,0 +1,83 @@
+/* ==========================================================================
+   VARIABLES (Custom properties)
+   ========================================================================== */
+
+/* ==========================================================================
+   BASE STYLES (html, body, headings, paragraphs)
+   ========================================================================== */
+
+body {
+    background-color: var(--current-background);
+}
+
+/* ==========================================================================
+   LAYOUT (Containers, grids, header, footer)
+   ========================================================================== */
+
+/* ==========================================================================
+   COMPONENTS (buttons, cards, modals, forms)
+   ========================================================================== */
+
+.spectral-purple-display {
+    background-color: var(--current-purple-color);
+}
+
+.spectral-purple-display .content {
+    height: 80%;
+}
+
+.spectral-purple-display .footer {
+    height: 20%;
+}
+
+.container-404 {
+    text-align: center;
+    margin: 100px auto;
+    background-color: var(--current-red-color);
+}
+
+.container-404 h1 {
+    color: var(--current-text-color-inverse);
+}
+
+.container-404 p {
+    color: var(--current-text-color-inverse);
+}
+
+/* ==========================================================================
+   THEME OVERRIDES (dark mode, theme variables)
+   ========================================================================== */
+
+/* ==========================================================================
+   MEDIA QUERIES (responsive breakpoints)
+   ========================================================================== */
+
+@media (prefers-color-scheme: light) {
+    body:not(.override-theme) {
+
+        --current-text-color: var(--text-dark);
+        --current-text-color-inverse: var(--text-dark-inverse);
+
+        --current-background: var(--background-light);
+
+        --current-blue-color: var(--blue-light);
+        --current-red-color: var(--red-light);
+        --current-greed-color: var(--green-light);
+        --current-purple-color: var(--purple-light);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.override-theme) {
+
+        --current-text-color: var(--text-light);
+        --current-text-color-inverse: var(--text-light-inverse);
+
+        --current-background: var(--background-dark);
+
+        --current-blue-color: var(--blue-dark);
+        --current-red-color: var(--red-dark);
+        --current-greed-color: var(--green-dark);
+        --current-purple-color: var(--purple-dark);
+    }
+}
