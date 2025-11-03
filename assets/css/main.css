@@ -29,18 +29,73 @@ main {
    ========================================================================== */
 
 .spectral-purple-display {
-    background-color: var(--current-purple-color);
+    --grid-color: rgba(255, 255, 255, 0.15);
+    --bg-color: #5a0099;
+    --highlight: #d09cff;
+
+    background: linear-gradient(to bottom right, #4a007a, #6a00b9);
     min-height: 600px;
+    position: relative;
+    overflow: hidden;
+    color: white;
+    font-family: monospace;
 
-    .content {
-        position: relative;
-        height: 80%;
-    }
+    display: flex;
+    flex-direction: column;
+}
 
-    .footer {
-        height: 20%;
-    }
+.spectral-purple-display .content {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+}
 
+/* === Grid lines === */
+.spectral-purple-display .grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+            repeating-linear-gradient(to right, var(--grid-color) 0 1px, transparent 1px 50px),
+            repeating-linear-gradient(to bottom, var(--grid-color) 0 1px, transparent 1px 40px);
+    mask-image: linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,0.2));
+}
+
+/* === Curved spectral line (fake for now) === */
+.spectral-purple-display .curve::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -10%;
+    width: 120%;
+    height: 200px;
+    background: none;
+    border-top: 2px solid var(--highlight);
+    border-radius: 50%;
+    transform: translateY(-50%) scaleY(0.5);
+    opacity: 0.8;
+    filter: drop-shadow(0 0 8px var(--highlight));
+}
+
+/* === Text overlay === */
+.overlay-text {
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    z-index: 2;
+}
+
+.overlay-text h1 {
+    font-size: 48px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 0 12px var(--highlight);
+}
+
+/* === Footer === */
+.spectral-purple-display .footer {
+    height: 15%;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-top: 1px solid var(--grid-color);
 }
 
 .container-404 {
