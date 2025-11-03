@@ -13,28 +13,26 @@
 
         <div class="container-404">
             <h1>
-                Page Not Found<br>
                 Error 404
             </h1>
+            <h2>
+                Page Not Found
+            </h2>
         </div>
 
         <div class="container-404-diagnostics">
             <div class="row">
                 <div class="label">REQUESTED PATH</div>
-                <div class="data" id="requested-path"></div>
+                <div class="data"></div>
             </div>
             <div class="row">
                 <div class="label">POSSIBLE ROUTES</div>
                 <div class="data">
-                    /home<br>/about<br>/contact
                 </div>
             </div>
         </div>
 
     </main>
 
-    <script>
-        document.getElementById('requested-path').textContent = window.location.pathname;
-    </script>
 </body>
 </html>

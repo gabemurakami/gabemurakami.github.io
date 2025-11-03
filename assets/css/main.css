@@ -53,6 +53,12 @@ main {
     h1 {
         color: var(--current-text-color-inverse);
         font-size: 60px;
+        text-transform: uppercase;
+    }
+
+    h2 {
+        font-size: 52px;
+        text-transform: uppercase;
     }
 
 }
@@ -60,22 +66,21 @@ main {
 .container-404-diagnostics {
     display: flex;
     flex-direction: column;
-    width: 80%;
-    margin: 0 auto;
-    background: black;
+    gap: 8px;
     color: var(--current-text-color-inverse);
     font-family: monospace;
-    border-top: 2px solid #700;
 
     .row {
         display: flex;
-        border-bottom: 1px solid #400;
+        border-bottom: 1px solid var(--current-red-color);;
+        border-top: 2px solid var(--current-red-color);;
     }
 
     .label {
         width: 200px;
         background-color: var(--current-red-color);
         padding: 8px;
+        font-size: 20px;
         text-align: left;
         font-weight: bold;
     }
