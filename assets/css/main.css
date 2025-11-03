@@ -20,28 +20,31 @@ body {
 
 .spectral-purple-display {
     background-color: var(--current-purple-color);
-}
 
-.spectral-purple-display .content {
-    height: 80%;
-}
+    .content {
+        position: relative;
+        height: 80%;
+    }
 
-.spectral-purple-display .footer {
-    height: 20%;
+    .footer {
+        height: 20%;
+    }
+
 }
 
 .container-404 {
     text-align: center;
     margin: 100px auto;
     background-color: var(--current-red-color);
-}
 
-.container-404 h1 {
-    color: var(--current-text-color-inverse);
-}
+    h1 {
+        color: var(--current-text-color-inverse);
+    }
 
-.container-404 p {
-    color: var(--current-text-color-inverse);
+    p {
+        color: var(--current-text-color-inverse);
+    }
+
 }
 
 /* ==========================================================================
