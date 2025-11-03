@@ -8,6 +8,16 @@
 
 body {
     background-color: var(--current-background);
+    font-family: sans-serif;
+}
+
+main {
+    max-width: 1012px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 0 16px;
+    margin-top: 32px !important;
+    margin-bottom: 32px !important;
 }
 
 /* ==========================================================================
@@ -20,6 +30,7 @@ body {
 
 .spectral-purple-display {
     background-color: var(--current-purple-color);
+    min-height: 600px;
 
     .content {
         position: relative;
@@ -35,14 +46,63 @@ body {
 .container-404 {
     text-align: center;
     margin: 100px auto;
+    padding-top: 32px;
+    padding-bottom: 32px;
     background-color: var(--current-red-color);
 
     h1 {
         color: var(--current-text-color-inverse);
+        font-size: 60px;
     }
 
-    p {
-        color: var(--current-text-color-inverse);
+}
+
+.container-404-diagnostics {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+    background: black;
+    color: var(--current-text-color-inverse);
+    font-family: monospace;
+    border-top: 2px solid #700;
+
+    .row {
+        display: flex;
+        border-bottom: 1px solid #400;
+    }
+
+    .label {
+        width: 200px;
+        background-color: var(--current-red-color);
+        padding: 8px;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    .data {
+        flex: 1;
+        padding: 8px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* animated line simulating heartbeat */
+    .data::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: repeating-linear-gradient(
+                to right,
+                #fff 0,
+                #fff 2px,
+                transparent 4px,
+                transparent 6px
+        );
+        animation: pulse 2s linear infinite;
     }
 
 }
@@ -83,4 +143,9 @@ body {
         --current-greed-color: var(--green-dark);
         --current-purple-color: var(--purple-dark);
     }
+}
+
+@keyframes pulse {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
 }
