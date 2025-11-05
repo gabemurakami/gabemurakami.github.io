@@ -101,6 +101,9 @@ main {
 
 /* === Footer === */
 .spectral-purple-display .footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     height: 180px;
     background-color: rgba(0, 0, 0, 0.3);
     border-top: 1px solid var(--grid-color);
