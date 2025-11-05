@@ -21,7 +21,7 @@ main {
 
 .spectral-purple-display {
     --grid-color: rgba(var(--current-text-color-rgb), 0.3);
-    background-color: var(--current-purple-color);
+    /*background-color: var(--current-purple-color);*/
 
     --highlight: #d09cff;
 
@@ -48,8 +48,8 @@ main {
     inset: 0;
     top: -80%;
     left: -40%;
-    width: 180%;
-    height: 180%;
+    width: 200%;
+    height: 200%;
     background-image: repeating-linear-gradient(to right, var(--grid-color) 0 4px, transparent 1px 20px), repeating-linear-gradient(to bottom, var(--grid-color) 0 4px, transparent 1px 50px);
     background-blend-mode: lighten;
     background-size: 100% 200%;
