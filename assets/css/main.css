@@ -47,14 +47,14 @@ main {
     position: absolute;
     inset: 0;
     top: -80%;
-    left: -40%;
-    width: 200%;
+    left: -100%;
+    width: 300%;
     height: 200%;
-    background-image: repeating-linear-gradient(to right, var(--grid-color) 0 4px, transparent 1px 20px), repeating-linear-gradient(to bottom, var(--grid-color) 0 4px, transparent 1px 50px);
+    background-image: repeating-linear-gradient(to right, var(--grid-color) 0 4px, transparent 1px 20px), repeating-linear-gradient(to bottom, var(--grid-color) 0 8px, transparent 1px 50px);
     background-blend-mode: lighten;
     background-size: 100% 200%;
     transform-origin: bottom;
-    transform: perspective(600px) rotateX(28deg) scaleY(1.5);
+    transform: perspective(600px) rotateX(22deg) scaleY(1.5);
     mask-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.2));
 }
 
