@@ -23,9 +23,6 @@ main {
     --grid-color: rgba(var(--current-text-color-rgb), 0.3);
     background-color: var(--current-purple-color);
 
-    --highlight: #d09cff;
-
-    /*background: linear-gradient(to bottom right, #4a007a, #6a00b9);*/
     height: 100vh;
     position: relative;
     overflow: hidden;
@@ -85,19 +82,105 @@ main {
 }
 
 /* NOTE: Adjust the curves and create new ones */
-.spectral-purple-display .curve::before {
+
+.spectral-purple-display .diagonal-line-1::before {
     content: '';
     position: absolute;
-    top: 50%;
-    left: -10%;
-    width: 120%;
-    height: 200px;
-    background: none;
-    border-top: 2px solid var(--highlight);
+    left: -5%;
+    bottom: 19%;
+    width: 102%;
+    height: 1px;
+    opacity: 0.4;
+    background: var(--highlight);
+    transform: rotate(-35deg);
+}
+
+.spectral-purple-display .diagonal-line-2::before {
+    content: '';
+    position: absolute;
+    right: -36%;
+    bottom: 19%;
+    width: 102%;
+    height: 1px;
+    opacity: 0.4;
+    background: var(--highlight);
+    transform: rotate(35deg);
+}
+
+/*.spectral-purple-display .diagonal-curve::before {*/
+/*    content: '';*/
+/*    position: absolute;*/
+/*    left: 26%;*/
+/*    bottom: -14%;*/
+/*    width: 79%;*/
+/*    height: 598px;*/
+/*    border: 4px solid var(--highlight);*/
+/*    border-radius: 50%;*/
+/*    opacity: 1;*/
+/*    filter: drop-shadow(0 0 10px var(--highlight));*/
+/*    transform: rotate(141deg) scaleY(1);*/
+/*}*/
+
+.spectral-purple-display .curve-1::before {
+    content: '';
+    position: absolute;
+    top: 85%;
+    left: 35%;
+    width: 10%;
+    height: 266px;
+
+    border: 1px solid var(--highlight);
     border-radius: 50%;
-    transform: translateY(-50%) scaleY(0.5);
-    opacity: 0.8;
+    transform: translateY(-50%) scaleY(5.5);
+    opacity: 1;
     filter: drop-shadow(0 0 8px var(--highlight));
+
+    background-image:
+            repeating-linear-gradient(
+                    to right,
+                    rgba(var(--highlight-rgb), 0.22) 0px,
+                    rgba(var(--highlight-rgb), 0.22) 2px,
+                    rgba(var(--highlight-rgb), 0.06) 2px,
+                    rgba(var(--highlight-rgb), 0.06) 14px
+            ),
+            linear-gradient(transparent, transparent);
+
+    background-position: 0 0;
+
+    background-clip: padding-box;
+    background-origin: padding-box;
+
+    background-size: auto 100%;
+}
+
+.spectral-purple-display .curve-2::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 36%;
+    width: 25%;
+    height: 154px;
+    border: 1px solid var(--highlight);
+    border-radius: 50%;
+    transform: translateY(-50%) scaleY(5.5);
+    opacity: 1;
+    filter: drop-shadow(0 0 8px var(--highlight));
+
+}
+
+.spectral-purple-display .curve-3::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 59%;
+    width: 25%;
+    height: 154px;
+    border: 1px solid var(--highlight);
+    border-radius: 50%;
+    transform: translateY(-50%) scaleY(5.5);
+    opacity: 1;
+    filter: drop-shadow(0 0 8px var(--highlight));
+
 }
 
 /* === Text overlay === */
@@ -105,7 +188,7 @@ main {
     position: absolute;
     color: var(--current-text-color);
     top: 40%;
-    right: 5%;
+    right: 15%;
     z-index: 2;
 }
 

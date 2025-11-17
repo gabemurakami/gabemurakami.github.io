@@ -25,4 +25,7 @@
 
     --green-light: #2ea043!important;
     --green-dark: #216e39!important;
+
+    --highlight-rgb: 172,105,255;
+    --highlight: #d09cff;
 }
