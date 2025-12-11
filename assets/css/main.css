@@ -83,28 +83,71 @@ main {
 
 /* NOTE: Adjust the curves and create new ones */
 
+@keyframes spectral-calibrate {
+    0%   { transform: translateX(calc(var(--calibration-strength) * -1)); }
+    8%   { transform: translateX(calc(var(--calibration-strength) * -0.88)); }
+    16%  { transform: translateX(calc(var(--calibration-strength) * -0.75)); }
+    28%  { transform: translateX(calc(var(--calibration-strength) * 0.66)); }
+    44%  { transform: translateX(calc(var(--calibration-strength) * -0.49)); }
+    60%  { transform: translateX(calc(var(--calibration-strength) * 0.31)); }
+    76%  { transform: translateX(calc(var(--calibration-strength) * -0.18)); }
+    90%  { transform: translateX(calc(var(--calibration-strength) * 0.08)); }
+    100% { transform: translateX(0); }
+}
+
+/* === Text overlay 2 === */
+.calibrate-button-container {
+    position: absolute;
+    color: var(--current-text-color);
+    bottom: 0;
+    left: 2rem;
+    z-index: 2;
+}
+
+.calibrate-button {
+    font-size: 1.8em;
+    font-family: monospace;
+    font-weight: bold;
+    border: none;
+    background: none;
+    color: white;
+    margin: 1.053rem 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+.spectral-chart-container {
+    position: absolute;
+    right: 18.3rem;
+    animation: spectral-calibrate 4.6s cubic-bezier(0.45, 0.03, 0.16, 1) 0.4s forwards;
+}
+
+.spectral-chart-container svg {
+    height: 100%;
+}
+
 .spectral-purple-display .diagonal-line-1::before {
     content: '';
     position: absolute;
-    left: -5%;
+    left: -8%;
     bottom: 19%;
-    width: 102%;
+    width: 110%;
     height: 1px;
     opacity: 0.4;
     background: var(--highlight);
-    transform: rotate(-35deg);
+    transform: rotate(327deg);
 }
 
 .spectral-purple-display .diagonal-line-2::before {
     content: '';
     position: absolute;
-    right: -36%;
+    right: -41%;
     bottom: 19%;
-    width: 102%;
+    width: 112%;
     height: 1px;
     opacity: 0.4;
     background: var(--highlight);
-    transform: rotate(35deg);
+    transform: rotate(32deg);
 }
 
 /*.spectral-purple-display .diagonal-curve::before {*/
@@ -197,15 +240,6 @@ main {
     letter-spacing: 2px;
     text-transform: uppercase;
     text-shadow: 0 0 12px var(--highlight);
-}
-
-/* === Text overlay 2 === */
-.overlay-text-2 {
-    position: absolute;
-    color: var(--current-text-color);
-    bottom: 0;
-    left: 2rem;
-    z-index: 2;
 }
 
 /* === Footer === */
