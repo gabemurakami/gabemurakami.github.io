@@ -783,9 +783,9 @@
 
         const strengths = {
             0: 45,   // default
-            1: 95,   // stronger wobble
-            2: 145,   // even stronger
-            3: 295   // maximum wobble
+            1: 95,   // 1x
+            2: 145,  // 2x
+            3: 295   // 3x
         };
 
         btn.addEventListener("click", () => {
@@ -796,8 +796,8 @@
             chart.style.setProperty("--calibration-strength", strengths[calibrationLevel] + "px");
 
             // Retrigger animation
-            chart.style.animation = "none";          // reset
-            chart.offsetHeight;                      // force reflow
+            chart.style.animation = "none";
+            chart.offsetHeight;
             chart.style.animation = "spectral-calibrate 4.6s cubic-bezier(0.45, 0.03, 0.16, 1) forwards";
 
             console.log(`Calibration level: ${calibrationLevel}`);
