@@ -93,19 +93,28 @@ main {
     margin: 1.053rem 0;
     padding: 0;
     cursor: pointer;
+    text-shadow: 0 0 6px var(--highlight);
 }
 
-.spectral-chart-container {
+.spectral-charts-container {
     position: absolute;
+    height: 100%;
     right: 18.3rem;
+    z-index: 15;
     animation: spectral-calibrate 4.6s cubic-bezier(0.45, 0.03, 0.16, 1) 0.4s forwards;
 }
 
-.spectral-chart-container svg {
+.spectral-charts-container svg {
     height: 100%;
 }
 
-.spectral-purple-display .diagonal-line-1::before {
+.x-target-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.x-target-container .diagonal-line-1::before {
     content: '';
     position: absolute;
     left: -8%;
@@ -115,9 +124,10 @@ main {
     opacity: 0.4;
     background: var(--highlight);
     transform: rotate(327deg);
+    z-index: 10;
 }
 
-.spectral-purple-display .diagonal-line-2::before {
+.x-target-container .diagonal-line-2::before {
     content: '';
     position: absolute;
     right: -41%;
@@ -127,6 +137,7 @@ main {
     opacity: 0.4;
     background: var(--highlight);
     transform: rotate(32deg);
+    z-index: 10;
 }
 
 .overlay-text {
