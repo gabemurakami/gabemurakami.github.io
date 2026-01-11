@@ -730,10 +730,10 @@
                         d="m 725.87857,1235.0865 c 15.43979,4.0629 19.22017,21.6822 22.38558,35.1873 4.85602,20.7597 6.78183,50.6939 9.99139,71.7378"
                         id="path21-5-2-7-7" /></g></svg>
             </div>
-            <div class="x-target-container">
-                <div class="diagonal-line-1"></div>
-                <div class="diagonal-line-2"></div>
-            </div>
+<!--            <div class="x-target-container">-->
+<!--                <div class="diagonal-line-1"></div>-->
+<!--                <div class="diagonal-line-2"></div>-->
+<!--            </div>-->
             <div class="overlay-text">
                 <h1>gabemurakami</h1>
             </div>
@@ -770,7 +770,52 @@
         </div>
     </div>
 
+    <div id="idle-overlay" aria-hidden="true">
+        <svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice">
+            <defs>
+                <filter id="glow">
+                    <feGaussianBlur stdDeviation="4" result="blur"/>
+                    <feMerge>
+                        <feMergeNode in="blur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+            </defs>
+
+            <g class="traces">
+                <path d="M100 50 V550" />
+                <path d="M200 50 V300 H400 V550" />
+                <path d="M600 50 V400 H750 V550" />
+                <path d="M850 50 V550" />
+                <circle cx="400" cy="300" r="8" />
+                <circle cx="750" cy="400" r="8" />
+            </g>
+        </svg>
+    </div>
+
 </main>
+
+<script>
+    let idleTimer;
+    const overlay = document.getElementById("idle-overlay");
+    const IDLE_TIME = 5000; // 5 seconds
+
+    function resetIdle() {
+        clearTimeout(idleTimer);
+        overlay.classList.remove("active");
+
+        idleTimer = setTimeout(() => {
+            overlay.classList.add("active");
+        }, IDLE_TIME);
+    }
+
+    ["mousemove", "mousedown", "keydown", "touchstart"].forEach(event =>
+        window.addEventListener(event, resetIdle)
+    );
+
+    resetIdle();
+
+</script>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -798,8 +843,6 @@
             chart.style.animation = "none";
             chart.offsetHeight;
             chart.style.animation = "spectral-calibrate 4.6s cubic-bezier(0.45, 0.03, 0.16, 1) forwards";
-
-            console.log(`Calibration level: ${calibrationLevel}`);
         });
     });
 </script>
