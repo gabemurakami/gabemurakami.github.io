@@ -148,7 +148,7 @@ main {
     color: var(--current-text-color);
     left: 50%;
     transform: translateX(-50%);
-    z-index: 2;
+    z-index: 20;
 }
 
 .overlay-text h1 {
