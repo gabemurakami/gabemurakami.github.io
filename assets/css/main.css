@@ -47,7 +47,7 @@ main {
     height: 200%;
     background-image:
             repeating-linear-gradient(to right, var(--grid-color) 0 4px, transparent 1px 20px),
-            repeating-linear-gradient(to bottom, var(--grid-color) 0 8px, transparent 1px 50px);
+            repeating-linear-gradient(to bottom, var(--grid-color) 0 8px, transparent 1px 80px);
     background-blend-mode: lighten;
     background-size: 100% 200%;
     transform-origin: bottom;
