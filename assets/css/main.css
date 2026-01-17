@@ -56,25 +56,16 @@ main {
     overflow: hidden;
 }
 
-.spectral-purple-display .grid::after {
-    content: "";
+.spectral-purple-display .grid-glow {
     position: absolute;
-    top: 0;
+    top: 36px;
     left: 0;
     width: 100%;
-    height: 60%;
+    height: 45%;
     pointer-events: none;
-
-    background: linear-gradient(
-            to bottom,
-            rgba(200, 150, 255, 0.9) 0%,
-            rgba(200, 150, 255, 0.6) 10%,
-            rgba(120, 60, 255, 0.2) 30%,
-            rgba(0, 0, 0, 0) 100%
-    );
-
-    filter: blur(40px);
-    opacity: 1;
+    z-index: 1;
+    background: linear-gradient(to bottom, rgb(119 76 167 / 80%) 0%, rgb(86 31 154 / 60%) 20%, rgb(79 45 155 / 30%) 50%, rgba(0, 0, 0, 0) 100%);
+    filter: blur(5px);
     mix-blend-mode: screen;
 }
 
