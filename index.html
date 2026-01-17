@@ -29,7 +29,7 @@
                         xml:space="preserve"
                         xmlns:xlink="http://www.w3.org/1999/xlink"
                         xmlns="http://www.w3.org/2000/svg"
-                        xmlns:svg="http://www.w3.org/2000/svg"><defs
+                        preserveAspectRatio="none"><defs
      id="defs1"><linearGradient
        id="linearGradient103"><stop
          style="stop-color:#ff84ff;stop-opacity:0.66952378;"
@@ -770,52 +770,7 @@
         </div>
     </div>
 
-    <div id="idle-overlay" aria-hidden="true">
-        <svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice">
-            <defs>
-                <filter id="glow">
-                    <feGaussianBlur stdDeviation="4" result="blur"/>
-                    <feMerge>
-                        <feMergeNode in="blur"/>
-                        <feMergeNode in="SourceGraphic"/>
-                    </feMerge>
-                </filter>
-            </defs>
-
-            <g class="traces">
-                <path d="M100 50 V550" />
-                <path d="M200 50 V300 H400 V550" />
-                <path d="M600 50 V400 H750 V550" />
-                <path d="M850 50 V550" />
-                <circle cx="400" cy="300" r="8" />
-                <circle cx="750" cy="400" r="8" />
-            </g>
-        </svg>
-    </div>
-
 </main>
-
-<script>
-    let idleTimer;
-    const overlay = document.getElementById("idle-overlay");
-    const IDLE_TIME = 5000; // 5 seconds
-
-    function resetIdle() {
-        clearTimeout(idleTimer);
-        overlay.classList.remove("active");
-
-        idleTimer = setTimeout(() => {
-            overlay.classList.add("active");
-        }, IDLE_TIME);
-    }
-
-    ["mousemove", "mousedown", "keydown", "touchstart"].forEach(event =>
-        window.addEventListener(event, resetIdle)
-    );
-
-    resetIdle();
-
-</script>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
