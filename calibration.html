@@ -73,12 +73,16 @@
         /* Targeting reticle */
         .reticle {
             position: absolute;
-            transition: all 0.1s ease-out;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
             pointer-events: none;
         }
 
         .circle {
             position: absolute;
+            left: 50%;
+            top: 50%;
             border-radius: 50%;
             border: 2px solid;
             transform: translate(-50%, -50%);
@@ -198,6 +202,36 @@
         .cross-vertical-bottom {
             top: 20px;
         }
+
+        .calibration {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            width: 0;
+            height: 0;
+        }
+
+        .calibration-dashed-line {
+            position: absolute;
+            width: 2px;
+            height: 250px;
+            background: repeating-linear-gradient(to top, rgb(255 182 0 / 80%) 0px, rgba(218, 165, 32, 0.8) 48px, transparent 18px, transparent 85px);
+            left: 0;
+            top: 0;
+            transform-origin: top center;
+        }
+
+        .calibration-dashed-line:nth-child(1) { transform: rotate(22.5deg); }
+        .calibration-dashed-line:nth-child(2) { transform: rotate(67.5deg); }
+        .calibration-dashed-line:nth-child(3) { transform: rotate(112.5deg); }
+        .calibration-dashed-line:nth-child(4) { transform: rotate(157.5deg); }
+        .calibration-dashed-line:nth-child(5) { transform: rotate(202.5deg); }
+        .calibration-dashed-line:nth-child(6) { transform: rotate(247.5deg); }
+        .calibration-dashed-line:nth-child(7) { transform: rotate(292.5deg); }
+        .calibration-dashed-line:nth-child(8) { transform: rotate(337.5deg); }
+
     </style>
 </head>
 <body>
@@ -224,6 +258,16 @@
         <div class="cross-line cross-horizontal-right"></div>
         <div class="cross-line cross-vertical-top"></div>
         <div class="cross-line cross-vertical-bottom"></div>
+        <div class="calibration">
+            <div class="calibration-dashed-line"></div>
+            <div class="calibration-dashed-line"></div>
+            <div class="calibration-dashed-line"></div>
+            <div class="calibration-dashed-line"></div>
+            <div class="calibration-dashed-line"></div>
+            <div class="calibration-dashed-line"></div>
+            <div class="calibration-dashed-line"></div>
+            <div class="calibration-dashed-line"></div>
+        </div>
     </div>
 </div>
 
