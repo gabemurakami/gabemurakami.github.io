@@ -59,25 +59,25 @@ body {
     mix-blend-mode: screen;
 }
 
-.calibrate-button-container {
+.library-button-container {
     position: absolute;
     color: var(--current-text-color);
     bottom: 0;
     left: 2rem;
     z-index: 2;
+    margin: 1rem;
 }
 
-.calibrate-button {
+.library-button {
     font-size: 1.8em;
     font-family: monospace;
     font-weight: bold;
     border: none;
     background: none;
     color: white;
-    margin: 1.053rem 0;
-    padding: 0;
     cursor: pointer;
     text-shadow: 0 0 6px var(--highlight);
+    text-decoration: none;
 }
 
 .spectral-charts-container {
