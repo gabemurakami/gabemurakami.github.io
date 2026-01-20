@@ -15,7 +15,7 @@
         <a class="nav-row" href="/">
             <div class="channel">
                 <div class="label cardiovascular">Home</div>
-                <div class="waveform">
+                <div class="waveform cardiovascular">
                     <canvas id="cardio"></canvas>
                     <div class="cardiac-marker"></div>
                 </div>
@@ -25,7 +25,7 @@
         <a class="nav-row" href="/calibration.html">
             <div class="channel">
                 <div class="label metabolic">Calibration</div>
-                <div class="waveform">
+                <div class="waveform metabolic">
                     <canvas id="metabolic"></canvas>
                 </div>
             </div>
@@ -34,7 +34,7 @@
         <a class="nav-row">
             <div class="channel">
                 <div class="label nervous">Central<br>Nerv System</div>
-                <div class="waveform">
+                <div class="waveform nervous">
                     <canvas id="nervous"></canvas>
                 </div>
             </div>
@@ -43,7 +43,7 @@
         <a class="nav-row">
             <div class="channel">
                 <div class="label pulmonary">Pulmonary<br>Function</div>
-                <div class="waveform">
+                <div class="waveform pulmonary">
                     <canvas id="pulmonary"></canvas>
                 </div>
             </div>
@@ -52,7 +52,7 @@
         <a class="nav-row">
             <div class="channel">
                 <div class="label systems">Systems<br>Integration</div>
-                <div class="waveform">
+                <div class="waveform systems">
                     <canvas id="systems"></canvas>
                 </div>
             </div>
@@ -61,7 +61,7 @@
         <a class="nav-row">
             <div class="channel">
                 <div class="label locomotor">Locomotor<br>System</div>
-                <div class="waveform">
+                <div class="waveform locomotor">
                     <canvas id="locomotor"></canvas>
                 </div>
             </div>
@@ -88,20 +88,20 @@
             this.canvas.height = this.canvas.offsetHeight;
         }
 
-        drawECG(x, y, amplitude) {
+        drawMetabolic(x, y, amplitude) {
 
             // P wave
-            this.ctx.lineTo(x + 10, y - amplitude * 0.2);
+            this.ctx.lineTo(x + 10, y - amplitude * 0.06);
             this.ctx.lineTo(x + 20, y);
 
             // Q wave
-            this.ctx.lineTo(x + 25, y + amplitude * 0.1);
+            this.ctx.lineTo(x + 25, y + amplitude * 0.3);
 
             // R wave (spike)
             this.ctx.lineTo(x + 30, y - amplitude * 0.9);
 
             // S wave
-            this.ctx.lineTo(x + 35, y + amplitude * 0.15);
+            this.ctx.lineTo(x + 35, y + amplitude * 0.055);
 
             // ST segment
             this.ctx.lineTo(x + 50, y);
@@ -112,50 +112,108 @@
 
         }
 
+        drawNervous(x, y, amplitude) {
+
+            // P wave
+            this.ctx.lineTo(x + 10, y - amplitude * 0.08);
+            this.ctx.lineTo(x + 20, y);
+
+            // R wave (spike)
+            this.ctx.lineTo(x + 32, y - amplitude * 0.4);
+
+            // S wave
+            this.ctx.lineTo(x + 35, y + amplitude * 0.01);
+
+        }
+
+        drawCardio(x, y, amplitude) {
+            this.ctx.lineTo(x + 10, y - amplitude * 0.05);
+
+            // Rising slope (gentler)
+            this.ctx.quadraticCurveTo(
+                x + 18, y - amplitude * 0.25,
+                x + 28, y - amplitude * 0.45
+            );
+
+            // Rounded peak (key part)
+            this.ctx.quadraticCurveTo(
+                x + 35, y - amplitude * 0.62,
+                x + 42, y - amplitude * 0.6
+            );
+
+            // Descending slope (mirror of rise)
+            this.ctx.quadraticCurveTo(
+                x + 50, y - amplitude * 0.45,
+                x + 55, y
+            );
+
+            // Lower dip
+            this.ctx.quadraticCurveTo(
+                x + 70, y + amplitude * 0.35,
+                x + 80, y + amplitude * 0.15
+            );
+
+            this.ctx.quadraticCurveTo(
+                x + 88, y + amplitude * 0.05,
+                x + 95, y
+            );
+
+            this.ctx.lineTo(x + 200, y);
+        }
+
         drawWave() {
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-            this.ctx.strokeStyle = '#00ff88';
-            this.ctx.lineWidth = 2;
-            this.ctx.beginPath();
 
             const centerY = this.canvas.height / 2;
             const amplitude = this.canvas.height * 0.35;
 
+            this.ctx.beginPath();
             this.ctx.moveTo(0, centerY);
 
-            switch(this.waveType) {
-                case 'ecg':
+            switch (this.waveType) {
+                case 'metabolic': {
                     const beatWidth = 80;
-                    for (let x = Math.floor(-this.offset / beatWidth) * beatWidth - beatWidth * 2;
-                         x < this.canvas.width + beatWidth;
-                         x += beatWidth) {
+                    for (
+                        let x = Math.floor(-this.offset / beatWidth) * beatWidth - beatWidth * 2;
+                        x < this.canvas.width + beatWidth;
+                        x += beatWidth
+                    ) {
                         const adjustedX = x + this.offset;
-                        this.drawECG(adjustedX, centerY, amplitude);
+                        this.drawMetabolic(adjustedX, centerY, amplitude);
                     }
                     break;
+                }
 
-                case 'metabolic':
-                    for (let x = 0; x < this.canvas.width; x++) {
+                case 'cardio': {
+                    const beatWidth = 200;
+                    for (
+                        let x = -beatWidth * 2;
+                        x < this.canvas.width + beatWidth;
+                        x += beatWidth
+                    ) {
                         const adjustedX = x + this.offset;
-                        const y = centerY + Math.sin((adjustedX) * 0.08) * amplitude * 0.6 +
-                            Math.sin((adjustedX) * 0.03) * amplitude * 0.3;
-                        this.ctx.lineTo(x, y);
+                        this.drawCardio(adjustedX, centerY, amplitude);
                     }
                     break;
+                }
 
-                case 'nervous':
-                    for (let x = 0; x < this.canvas.width; x++) {
+                case 'nervous': {
+                    const beatWidth = 100;
+                    for (
+                        let x = Math.floor(-this.offset / beatWidth) * beatWidth - beatWidth * 4;
+                        x < this.canvas.width + beatWidth;
+                        x += beatWidth
+                    ) {
                         const adjustedX = x + this.offset;
-                        const noise = Math.sin(adjustedX * 0.5) * Math.cos(adjustedX * 0.7);
-                        const y = centerY + noise * amplitude * 0.15;
-                        this.ctx.lineTo(x, y);
+                        this.drawNervous(adjustedX, centerY, amplitude);
                     }
                     break;
+                }
 
                 case 'respiratory':
                     for (let x = 0; x < this.canvas.width; x++) {
                         const adjustedX = x + this.offset;
-                        const y = centerY + Math.sin((adjustedX) * 0.04) * amplitude * 0.7;
+                        const y = centerY + Math.sin(adjustedX * 0.04) * amplitude * 0.7;
                         this.ctx.lineTo(x, y);
                     }
                     break;
@@ -163,15 +221,13 @@
                 case 'square':
                     for (let x = 0; x < this.canvas.width; x++) {
                         const adjustedX = x + this.offset;
-                        const cycle = Math.floor((adjustedX) / 100) % 3;
-                        let y;
-                        if (cycle === 0) {
-                            y = centerY - amplitude * 0.5;
-                        } else if (cycle === 1) {
-                            y = centerY;
-                        } else {
-                            y = centerY - amplitude * 0.3;
-                        }
+                        const cycle = Math.floor(adjustedX / 100) % 3;
+                        let y =
+                            cycle === 0
+                                ? centerY - amplitude * 0.5
+                                : cycle === 1
+                                    ? centerY
+                                    : centerY - amplitude * 0.3;
                         this.ctx.lineTo(x, y);
                     }
                     break;
@@ -179,21 +235,33 @@
                 case 'erratic':
                     for (let x = 0; x < this.canvas.width; x += 3) {
                         const adjustedX = x + this.offset;
-                        const y = centerY + (Math.sin(adjustedX * 0.1) * amplitude * 0.4) +
+                        const y =
+                            centerY +
+                            Math.sin(adjustedX * 0.1) * amplitude * 0.4 +
                             (Math.random() - 0.5) * amplitude * 0.5;
                         this.ctx.lineTo(x, y);
                     }
                     break;
             }
 
+            this.ctx.save();
+            this.ctx.strokeStyle = 'rgba(230, 255, 245, 0.7)';
+            this.ctx.lineWidth = 2;
+            this.ctx.shadowColor = 'rgba(230, 255, 245, 0.7)';
+            this.ctx.shadowBlur = 10;
             this.ctx.stroke();
+            this.ctx.restore();
         }
 
         animate() {
-            this.offset -= 0.5;
-            if (this.waveType === 'ecg' && this.offset < -80) {
+            this.offset += 0.5;
+            if (this.waveType === 'ecg' && this.offset > 80) {
                 this.offset = 0;
-            } else if (this.offset < -1000) {
+            } else if (this.waveType === 'metabolic' && this.offset > 200) {
+                this.offset = 0;
+            } else if (this.waveType === 'nervous' && this.offset > 100) {
+                this.offset = 0;
+            } else if (this.offset > 1000) {
                 this.offset = 0;
             }
             this.drawWave();
@@ -201,7 +269,7 @@
         }
     }
 
-    new WaveformGenerator('cardio', 'ecg');
+    new WaveformGenerator('cardio', 'cardio');
     new WaveformGenerator('metabolic', 'metabolic');
     // new WaveformGenerator('nervous', 'nervous');
     // new WaveformGenerator('pulmonary', 'respiratory');

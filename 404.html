@@ -1,38 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>404 - Page Not Found</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Page Not Found</title>
 
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/404.css">
 </head>
 <body>
-    <main>
+<div class="container">
 
-        <div class="container-404">
-            <h1>
-                Error 404
-            </h1>
-            <h2>
-                Page Not Found
-            </h2>
+    <div class="monitor">
+
+        <div class="error-banner">
+            <h1>404</h1>
+            <p>PAGE NOT FOUND</p>
         </div>
 
-        <div class="container-404-diagnostics">
-            <div class="row">
-                <div class="label">REQUESTED PATH</div>
-                <div class="data"></div>
-            </div>
-            <div class="row">
-                <div class="label">POSSIBLE ROUTES</div>
-                <div class="data">
+        <div class="nav-row">
+            <div class="channel">
+                <div class="label flatline">
+                    <span class="path-label" id="errorPath">ERROR</span>
+                </div>
+                <div class="waveform error">
+                    <canvas id="flatline"></canvas>
                 </div>
             </div>
         </div>
 
-    </main>
+        <div class="nav-home-container">
+            <a class="nav-home" href="/">
+                <span>HOME</span>
+            </a>
+        </div>
 
+    </div>
+</div>
+
+<script>
+    const fullPath = window.location.pathname;
+    const pathParts = fullPath.split('/').filter(part => part.length > 0);
+    const displayPath = pathParts.length > 0 ? '/' + pathParts[pathParts.length - 1] : '/unknown';
+    document.getElementById('errorPath').textContent = displayPath;
+
+    class FlatlineGenerator {
+        constructor(canvasId) {
+            this.canvas = document.getElementById(canvasId);
+            this.ctx = this.canvas.getContext('2d');
+            this.progress = 0;
+            this.resize();
+            window.addEventListener('resize', () => this.resize());
+            this.animate();
+        }
+
+        resize() {
+            this.canvas.width = this.canvas.offsetWidth;
+            this.canvas.height = this.canvas.offsetHeight;
+        }
+
+        draw() {
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            this.ctx.strokeStyle = 'rgba(230, 255, 245, 0.6)';
+            this.ctx.lineWidth = 2;
+            this.ctx.beginPath();
+
+            const centerY = this.canvas.height / 2;
+            const maxProgress = this.canvas.width * 0.9;
+            const currentX = Math.min(this.progress, maxProgress);
+
+            this.ctx.moveTo(0, centerY);
+            this.ctx.lineTo(currentX, centerY);
+            this.ctx.stroke();
+        }
+
+        animate() {
+            const maxProgress = this.canvas.width * 0.9;
+            const remaining = maxProgress - this.progress;
+            this.progress += remaining * 0.01;
+
+            this.draw();
+            requestAnimationFrame(() => this.animate());
+        }
+    }
+
+    new FlatlineGenerator('flatline');
+</script>
 </body>
 </html>
