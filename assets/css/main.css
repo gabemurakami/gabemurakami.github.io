@@ -59,16 +59,7 @@ body {
     mix-blend-mode: screen;
 }
 
-.library-button-container {
-    position: absolute;
-    color: var(--current-text-color);
-    bottom: 0;
-    left: 2rem;
-    z-index: 2;
-    margin: 1rem;
-}
-
-.library-button {
+.text-button {
     font-size: 1.8em;
     font-family: monospace;
     font-weight: bold;
@@ -85,7 +76,8 @@ body {
     height: 100%;
     right: 18.3rem;
     z-index: 15;
-    animation: spectral-calibrate 4.6s cubic-bezier(0.45, 0.03, 0.16, 1) 0.4s forwards;
+    animation: spectral-flicker 2s ease-in 1.4s forwards;
+    opacity: 0;
 }
 
 .spectral-charts-container svg {
@@ -140,6 +132,87 @@ body {
     text-shadow: 0 0 12px var(--highlight);
 }
 
+.overlay-text {
+    position: absolute;
+    color: var(--current-text-color);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+}
+
+.overlay-text h1 {
+    font-size: 36px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 0 12px var(--highlight);
+}
+
+.left-numbers {
+    position: absolute;
+    left: 2rem;
+    top: 0;
+    bottom: 0;
+    margin: 1rem;
+    z-index: 100;
+    color: var(--current-text-color);
+}
+
+.number-line {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.number-line .number {
+    letter-spacing: 1px;
+    white-space: nowrap;
+    font-size: 1.6em;
+    font-family: monospace;
+    font-weight: bold;
+    text-shadow: 0 0 6px var(--highlight);
+}
+
+.number-line .line {
+    width: 100vw;
+    height: 4px;
+    background: var(--highlight);
+    opacity: 0.4;
+    box-shadow: 0 0 6px var(--highlight);
+    transform-origin: left;
+    animation: loadLine 1.5s ease-out forwards;
+    transform: scaleX(0);
+}
+
+@keyframes loadLine {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+
+.number-line.top-1 {
+    top: 20%;
+}
+
+.number-line.top-2 {
+    top: 30%;
+}
+
+.number-line.top-3 {
+    top: 40%;
+}
+
+.number-line.bottom-1 {
+    bottom: 20%;
+}
+
+.number-line.bottom-2 {
+    bottom: 10%;
+}
+
 .spectral-purple-display .footer {
     display: flex;
     flex-direction: column;
@@ -147,8 +220,42 @@ body {
     height: 180px;
     background-color: rgba(0, 0, 0, 0.3);
     border-top: 1px solid var(--grid-color);
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.spectral-purple-display .footer .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.spectral-purple-display .footer .row:first-child {
+    margin-bottom: 2rem;
+}
+
+.spectral-purple-display .footer .row > div:first-child,
+.spectral-purple-display .footer .row > div:last-child {
+    width: 100px;
+}
+
+.spectral-purple-display .footer .row > div:last-child {
+    text-align: right;
+}
+
+.spectral-purple-display .footer h2 {
+    font-size: 2em;
+    margin: 0;
+}
+
+.spectral-purple-display .footer h3 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.spectral-purple-display .footer h4 {
+    font-size: 16px;
+    margin: 0;
 }
 
 @media (prefers-color-scheme: light) {
@@ -183,14 +290,47 @@ body {
     }
 }
 
-@keyframes spectral-calibrate {
-    0%   { transform: translateX(calc(var(--calibration-strength) * -1)); }
-    8%   { transform: translateX(calc(var(--calibration-strength) * -0.88)); }
-    16%  { transform: translateX(calc(var(--calibration-strength) * -0.75)); }
-    28%  { transform: translateX(calc(var(--calibration-strength) * 0.66)); }
-    44%  { transform: translateX(calc(var(--calibration-strength) * -0.49)); }
-    60%  { transform: translateX(calc(var(--calibration-strength) * 0.31)); }
-    76%  { transform: translateX(calc(var(--calibration-strength) * -0.18)); }
-    90%  { transform: translateX(calc(var(--calibration-strength) * 0.08)); }
-    100% { transform: translateX(0); }
+@keyframes spectral-flicker {
+    0% {
+        opacity: 0;
+    }
+    5% {
+        opacity: 0.3;
+    }
+    10% {
+        opacity: 0;
+    }
+    15% {
+        opacity: 0.6;
+    }
+    20% {
+        opacity: 0.1;
+    }
+    25% {
+        opacity: 0.8;
+    }
+    30% {
+        opacity: 0.2;
+    }
+    40% {
+        opacity: 0.9;
+    }
+    50% {
+        opacity: 0.4;
+    }
+    60% {
+        opacity: 1;
+    }
+    70% {
+        opacity: 0.7;
+    }
+    80% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 0.9;
+    }
+    100% {
+        opacity: 1;
+    }
 }
