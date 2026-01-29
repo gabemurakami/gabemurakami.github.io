@@ -1,11 +1,10 @@
 // Create grid lines
 const grid = document.getElementById('backgroundGrid');
 const numVertical = 12;
-const numHorizontal = 20;
+const numHorizontal = 32;
 const center = 0.5;
 
 function curvedDistribution(t, power = 2.5) {
-    // t is between -1 and 1
     return Math.sign(t) * Math.pow(Math.abs(t), power);
 }
 
@@ -20,13 +19,12 @@ for (let i = 0; i < numHorizontal; i++) {
     // Normalized index from -1 to 1
     let t = (i / (numHorizontal - 1)) * 2 - 1;
 
-    // Skip the center line
-    if (Math.abs(t) < 0.01) continue;
+    // Skip the center area
+    if (Math.abs(t) < 0.6) continue;
 
-    // Curve the distribution
-    let curved = curvedDistribution(t, 2.8);
+    // Compression near center
+    let curved = curvedDistribution(t, 3);
 
-    // Map back to 0–100%
     let top = center + curved * center;
 
     const line = document.createElement('div');
