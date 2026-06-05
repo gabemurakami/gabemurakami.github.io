@@ -1,4 +1,4 @@
-# gabemurakami.github.io
+# nullgabs.github.io
 
 Repo for my personal website at [gabemurakami.github.io](https://nullgabs.github.io/)
 
